@@ -11,13 +11,14 @@ class PlayerAdapter(private val playerList : ArrayList<Player>): RecyclerView.Ad
     class PlayerHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = PlayerItemBinding.bind(item)
         fun bind(player: Player) = with(binding) {
-            nickname.text = "Nick: " + player.nickname
+            nickname.text = PlayerDet.Nick.str + player.nickname
+            team.text = player.team
             when(player.team){
-                "Radiant" -> team.setBackgroundResource(R.drawable.radiant_background)
-                "Dire" -> team.setBackgroundResource(R.drawable.dire_background)
+                Team.Radiant.team -> team.setBackgroundResource(R.drawable.radiant_background)
+                Team.Dire.team -> team.setBackgroundResource(R.drawable.dire_background)
             }
-            heroName.text = "Герой: " + player.hero
-            gold.text = "Всего золота: " + player.gold
+            heroName.text = PlayerDet.Hero.str + player.hero
+            gold.text = PlayerDet.Gold.str + player.gold
         }
 
     }

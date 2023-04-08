@@ -80,9 +80,9 @@ suspend fun getMatchList() : ArrayList<Match> {
     matches.forEach { matchDetails ->
         val matchId = matchDetails.match_id
         val startTime = getFormattedStartTime(matchDetails.start_time)
-        val winner = if (matchDetails.radiant_win == true) "Radiant" else "Dire"
+        val winner = if (matchDetails.radiant_win == true) Team.Radiant.team else Team.Dire.team
         val duration = getFormattedDuration(matchDetails.duration)
-        val avgMmr = if (matchDetails.avg_mmr == null) "Нет" else matchDetails.avg_mmr.toString()
+        val avgMmr = if (matchDetails.avg_mmr == null) Additional.None.str else matchDetails.avg_mmr.toString()
 
         val match = Match(matchId, startTime, winner, duration, avgMmr)
         matchesArray.add(match)
@@ -205,9 +205,9 @@ suspend fun getPlayersFromMatchId(matchId : Long) : ArrayList<Player> {
     val heroes = service.getHeroes()
 
     match.players.forEach{ player ->
-        val team = if (player.player_slot < 128) "Radiant" else "Dire"
+        val team = if (player.player_slot < 128) Team.Radiant.team else Team.Dire.team
         val gold = player.total_gold.toString()
-        val nickname = if(player.account_id > 1) getPlayerName(player.account_id) else "None"
+        val nickname = if(player.account_id > 1) getPlayerName(player.account_id) else Additional.None.str
         val hero = getHeroName(heroes, player.hero_id)
 //        val nickname = player.account_id.toString()
 //        val hero = player.hero_id.toString()

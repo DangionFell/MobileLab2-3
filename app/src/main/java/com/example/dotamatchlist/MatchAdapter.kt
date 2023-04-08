@@ -11,14 +11,14 @@ class MatchAdapter(val listener : Listener, private val matchList : ArrayList<Ma
     class MatchHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = MatchItemBinding.bind(item)
         fun bind(match: Match, listener: Listener) = with(binding) {
-            startTime.text = "Начало матча: " + match.startTime
+            startTime.text = MatchDet.Start.str + match.startTime
             when(match.winner){
-                "Radiant" -> winner.setBackgroundResource(R.drawable.radiant_background)
-                "Dire" -> winner.setBackgroundResource(R.drawable.dire_background)
+                Team.Radiant.team -> winner.setBackgroundResource(R.drawable.radiant_background)
+                Team.Dire.team -> winner.setBackgroundResource(R.drawable.dire_background)
             }
             winner.text = match.winner
-            avgMmr.text = "Срединий MMR: " + match.avgMmr
-            duration.text = "Длительность: " + match.duration
+            avgMmr.text = MatchDet.AvgMMR.str + match.avgMmr
+            duration.text = MatchDet.Duration.str + match.duration
 
             itemView.setOnClickListener{
                 listener.onClick(match)
