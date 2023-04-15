@@ -6,7 +6,8 @@ enum class Team(val team: String) {
 }
 
 enum class Additional(val str: String) {
-    None("None")
+    None("None"),
+    NoInternet("Проверьте подключение к Интернету")
 }
 
 enum class MatchDet(val str: String) {

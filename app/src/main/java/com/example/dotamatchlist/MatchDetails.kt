@@ -209,10 +209,8 @@ suspend fun getPlayersFromMatchId(matchId : Long) : ArrayList<Player> {
         val gold = player.total_gold.toString()
         val nickname = if(player.account_id > 1) getPlayerName(player.account_id) else Additional.None.str
         val hero = getHeroName(heroes, player.hero_id)
-//        val nickname = player.account_id.toString()
-//        val hero = player.hero_id.toString()
 
-        val pl = Player(team, nickname, hero, gold)
+        val pl = Player(player.account_id, team, nickname, hero, gold)
 
         players.add(pl)
     }
